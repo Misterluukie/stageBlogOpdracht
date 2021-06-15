@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
+
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'index']);
+
+Route::get('/posts/{post}/update', [App\Http\Controllers\PostController::class, 'update']);
