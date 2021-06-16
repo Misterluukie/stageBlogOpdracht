@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +16,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    $posts = Post::all();
+        
+    return view('welcome', compact('posts'));
 });
 
 Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
 
-Route::get('/posts', [App\Http\Controllers\PostController::class, 'index']);
+// Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/posts/{post}/update', [App\Http\Controllers\PostController::class, 'update']);
+Route::get('/posts/create', [PostController::class, 'create']);
+
+Route::post('/posts', [PostController::class, 'store']);
+
+Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
+
+Route::put('/posts/{post}', [PostController::class, 'update']);
+
+Route::get('/posts/{post}/delete', [PostController::class, 'delete']);
+
+Route::get('/posts/{post}/view', [PostController::class, 'viewPost']);
