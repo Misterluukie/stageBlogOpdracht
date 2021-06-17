@@ -38,4 +38,8 @@ Route::put('/posts/{post}', [PostController::class, 'update']);
 
 Route::get('/posts/{post}/delete', [PostController::class, 'delete']);
 
-Route::get('/posts/{post}/view', [PostController::class, 'viewPost']);
+Route::get('/posts/{post}/view', function($id){
+    $post = Post::find($id);
+
+    return view('posts.singlePost', ['post' => $post]);
+});

@@ -22,6 +22,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    
     // public function index()
     // {
     //     $posts = Post::all();
@@ -29,9 +30,9 @@ class PostController extends Controller
     //     return view('posts.index', compact('posts'));
     // }
 
-    public function viewPost(Post $post){
-        return view('posts.singlePost', ['post' => $post]);
-    }
+    // public function viewPost(Post $post){
+    //     return view('posts.singlePost', ['post' => $post]);
+    // }
 
     public function create(){
         return view('posts.create');
@@ -47,7 +48,7 @@ class PostController extends Controller
             'title' => request('title'),
             'content' => request('content')
         ]);
-
+       
         return redirect('/admin');
     }
 
